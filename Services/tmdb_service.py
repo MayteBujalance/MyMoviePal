@@ -6,16 +6,31 @@ class TMDBService:
     Handles communication with the TMDB API.
     """
 
+    BASE_URL = "https://api.themoviedb.org/3"
+
+    def __init__(self, api_key):
+        self.api_key = api_key
+
     def mood_to_genre(self, mood):
         mood_mapping = {
-            "happy": 35,  # Comedy
-            "sad": 18,  # Drama
-            "tense": 53,  # Thriller
-            "thoughtful": 99,  # Documentary
-            "chilled": 16  # Animation
+            "happy": 35,        # Comedy
+            "sad": 18,          # Drama
+            "tense": 53,        # Thriller
+            "thoughtful": 99,   # Documentary
+            "chilled": 16       # Animation
         }
 
         return mood_mapping.get(mood.lower())
+
+    def get_genres(self):
+        url = f"{self.BASE_URL}/genre/movie/list"
+
+        response = requests.get(
+            url,
+            params={"api_key": self.api_key}
+        )
+
+        return response.json()
 
     def discover_movies(self, genre, era):
         url = f"{self.BASE_URL}/discover/movie"
@@ -43,25 +58,31 @@ class TMDBService:
         return response.json()
 
     def get_movie_details(self, movie_id):
-        """
-        Returns runtime, rating, overview etc.
-        """
-        pass
+        url = f"{self.BASE_URL}/movie/{movie_id}"
+
+        response = requests.get(
+            url,
+            params={"api_key": self.api_key}
+        )
+
+        return response.json()
 
     def get_movie_cast(self, movie_id):
-        """
-        Returns cast information.
-        """
-        pass
+        url = f"{self.BASE_URL}/movie/{movie_id}/credits"
+
+        response = requests.get(
+            url,
+            params={"api_key": self.api_key}
+        )
+
+        return response.json()
 
     def get_watch_providers(self, movie_id):
-        """
-        Returns streaming providers.
-        """
-        pass
+        url = f"{self.BASE_URL}/movie/{movie_id}/watch/providers"
 
-    def get_genres(self):
-        """
-        Returns TMDB genre list.
-        """
-        pass
+        response = requests.get(
+            url,
+            params={"api_key": self.api_key}
+        )
+
+        return response.json()
