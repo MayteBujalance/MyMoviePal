@@ -1,6 +1,5 @@
 # TMDB Query Mapping
 
-"""
 
 | User Question       | TMDB Endpoint            |
 |--------------------|--------------------------|
@@ -12,4 +11,3 @@
 | Main Actor         | Credits                  |
 | Streaming Provider | Watch Providers          |
 
-"""
