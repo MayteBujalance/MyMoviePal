@@ -20,6 +20,9 @@ class TMDBService:
             "chilled": 16       # Animation
         }
 
+        if mood is None:
+            return None
+
         return mood_mapping.get(mood.lower())
 
     def get_genres(self):
@@ -38,8 +41,7 @@ class TMDBService:
         params = {
             "api_key": self.api_key,
             "with_genres": genre,
-            "sort_by": "vote_average.desc",
-            "vote_count.gte": 100
+            "sort_by": "popularity.desc"
         }
 
         if era == "classic":
