@@ -75,10 +75,8 @@ VALUES
 ('filmcritic', 'filmcritic@email.com'),
 ('popcornlover', 'popcornlover@email.com');
     
-INSERT INTO Movies
-(tmdb_id, title, release_date, genre, runtime, vote_average, main_actor, streaming_provider, overview, poster_path)
-VALUES
-(
+INSERT INTO Movies(tmdb_id, title, release_date, genre, runtime, vote_average, main_actor, streaming_provider, overview, poster_path)
+VALUES(
 27205,
 'Inception',
 '2010-07-15',
@@ -89,161 +87,186 @@ VALUES
 'Amazon Prime',
 'Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets.',
 '/xlaY2zyzMfkhk0HSC5VUwzoZPU1.jpg'
-);
+),
 
-INSERT INTO Movies
-(tmdb_id, title, release_date, genre, runtime, vote_average, main_actor, streaming_provider, overview, poster_path)
-VALUES
 (
-130799,
-'Divergent',
-'2014-03-21',
-'Science Fiction, Adventure, Romance',
-139,
-6.90,
-'Shailene Woodley',
-'Netflix',
-'In a society divided into factions, Tris discovers she is Divergent and uncovers a dangerous conspiracy.',
-'/jIK4zYCMpD7zqZK4g6N8Y6S7hzM.jpg'
-);
-
-INSERT INTO Movies
-(tmdb_id, title, release_date, genre, runtime, vote_average, main_actor, streaming_provider, overview, poster_path)
-VALUES
-(
-198663,
-'The Maze Runner',
-'2014-09-19',
-'Action, Mystery, Science Fiction',
-113,
-7.20,
-'Dylan O''Brien',
+301528,
+'Toy Story 4',
+'2019-06-19',
+'Animation, Family, Comedy, Adventure',
+100,
+7.50,
+'Tom Hanks',
 'Disney+',
-'Thomas wakes up trapped in a maze with no memory of his past and must work with others to escape.',
-'/ode14q7WtDugFDp78fo9lCsmay9.jpg'
-);
+'Woody and the gang embark on a road trip adventure after meeting a new toy called Forky.',
+'/w9kR8qbmQ01HwnvK4alvnQ2ca0L.jpg'
+),
 
-INSERT INTO Movies
-(tmdb_id, title, release_date, genre, runtime, vote_average, main_actor, streaming_provider, overview, poster_path)
-VALUES
 (
-131634,
-'The Hunger Games',
-'2012-03-23',
-'Science Fiction, Adventure, Action',
-142,
-7.20,
-'Jennifer Lawrence',
+496243,
+'Parasite',
+'2019-05-30',
+'Drama, Thriller, Comedy',
+132,
+8.50,
+'Song Kang-ho',
+'Amazon Prime Video',
+'A poor family gradually infiltrates the lives of a wealthy household with unexpected consequences.',
+'/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg'
+),
+
+(
+269149,
+'Zootopia',
+'2016-02-11',
+'Animation, Adventure, Comedy, Family',
+108,
+7.80,
+'Ginnifer Goodwin',
+'Disney+',
+'A rookie rabbit police officer teams up with a fox to solve a mystery.',
+'/hlK0e0wAQ3VLuJcsfIYPvb4JVud.jpg'
+),
+
+(
+177572,
+'Big Hero 6',
+'2014-10-24',
+'Animation, Action, Adventure, Family',
+102,
+7.70,
+'Ryan Potter',
+'Disney+',
+'A young robotics prodigy teams up with Baymax and friends to fight crime.',
+'/2mxS4wUimwlLmI1xp6QW6NSU361.jpg'
+),
+
+(
+293660,
+'Deadpool',
+'2016-02-09',
+'Action, Comedy, Adventure',
+108,
+7.60,
+'Ryan Reynolds',
+'Disney+',
+'A former special forces operative becomes the wisecracking mercenary Deadpool.',
+'/3E53WEZJqP6aM84D8CckXx4pIHw.jpg'
+),
+
+(
+10192,
+'Shrek Forever After',
+'2010-05-20',
+'Animation, Adventure, Comedy, Family',
+93,
+6.40,
+'Mike Myers',
 'Netflix',
-'Katniss Everdeen volunteers to take her sisters place in a televised fight for survival.',
-'/iQK0pkTQC60XBUsNQJgg5DA0eFq.jpg'
-);
+'Shrek makes a deal that turns his world upside down.',
+'/6HrfPZtKcGmX2tUWW3cnciZTaSD.jpg'
+),
 
-INSERT INTO Movies
-(tmdb_id, title, release_date, genre, runtime, vote_average, main_actor, streaming_provider, overview, poster_path)
-VALUES
 (
-438631,
-'Dune',
-'2021-10-22',
-'Science Fiction, Adventure, Drama',
-155,
+106646,
+'The Wolf of Wall Street',
+'2013-12-25',
+'Drama, Comedy, Crime',
+180,
 8.00,
-'Timothee Chalamet',
-'Now TV',
-'Paul Atreides must travel to the most dangerous planet in the universe to secure the future of his family.',
-'/d5NXSklXo0qyIYkgV94XAgMIckC.jpg'
+'Leonardo DiCaprio',
+'Netflix',
+'A New York stockbroker becomes involved in fraud, corruption and excess.',
+'/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg'
 );
 
-INSERT INTO UserPreferences (user_id, mood, genre, duration, era, streaming_provider)
+INSERT INTO UserPreferences(user_id, mood, genre, duration, era, streaming_provider)
 VALUES
-(1, 'Excited', 'Science Fiction', 'Long', '2010s', 'Netflix'),
+(1, 'Thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
 
-(2, 'Adventurous', 'Action', 'Medium', '2010s', 'Disney+'),
+(2, 'Happy', 'Animation', 'Medium', '2010s', 'Disney+'),
 
-(3, 'Curious', 'Mystery', 'Medium', '2010s', 'Disney+'),
+(3, 'Curious', 'Thriller', 'Long', '2010s', 'Amazon Prime Video'),
 
-(4, 'Thoughtful', 'Drama', 'Long', '2020s', 'Now TV'),
+(4, 'Relaxed', 'Animation', 'Medium', '2010s', 'Disney+'),
 
-(5, 'Inspired', 'Adventure', 'Long', '2010s', 'Amazon Prime'),
+(5, 'Energetic', 'Action', 'Medium', '2010s', 'Disney+'),
 
-(6, 'Energetic', 'Action', 'Long', '2010s', 'Netflix'),
+(6, 'Humorous', 'Comedy', 'Medium', '2010s', 'Disney+'),
 
-(7, 'Relaxed', 'Science Fiction', 'Medium', '2020s', 'Now TV'),
+(7, 'Nostalgic', 'Animation', 'Short', '2010s', 'Netflix'),
 
-(8, 'Excited', 'Adventure', 'Long', '2010s', 'Netflix'),
+(8, 'Ambitious', 'Drama', 'Long', '2010s', 'Netflix'),
 
-(9, 'Analytical', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
+(9, 'Thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
 
-(10, 'Happy', 'Action', 'Medium', '2010s', 'Disney+'); 
+(10, 'Curious', 'Drama', 'Long', '2010s', 'Amazon Prime Video');
 
 
 INSERT INTO Watchlists (user_id, movie_id)
- VALUES
- (1, 1),
- (1, 5),
+VALUES
+(1,1),
+(1,8),
 
- (2, 2),
- (2, 3),
- (2, 5),
+(2,2),
+(2,5),
 
- (3, 3),
- (3, 4),
+(3,3),
+(3,6),
 
- (4, 1),
- (4, 5),
+(4,1),
+(4,3),
 
- (5, 2),
- (5, 4),
+(5,2),
+(5,4),
 
- (6, 1),
- (6, 3),
- (6, 4),
+(6,6),
+(6,8),
 
- (7, 5),
+(7,5),
+(7,2),
 
- (8, 2),
- (8, 4),
- (8, 5),
+(8,7),
+(8,5),
 
- (9, 1),
- (9, 5),
+(9,1),
+(9,8),
 
- (10, 3),
- (10, 4);
+(10,3),
+(10,4);
 
 INSERT INTO Ratings
- (user_id, movie_id, rating, review)
- VALUES
- (1, 1, 5, 'One of the best sci-fi films ever made'),
- (1, 5, 5, 'Amazing visuals and storytelling'),
+(user_id, movie_id, rating, review)
+VALUES
+(1, 1, 5, 'One of the best sci-fi films ever made'),
+(1, 5, 5, 'Baymax was hilarious and heartwarming'),
 
- (2, 2, 4, 'Really enjoyed the faction system'),
- (2, 3, 5, 'Kept me hooked from start to finish'),
+(2, 2, 4, 'A fun and emotional ending to the Toy Story series'),
+(2, 3, 5, 'Brilliant story with an unexpected ending'),
 
- (3, 3, 4, 'Great action and suspense'),
- (3, 4, 5, 'Loved Katniss as the main character'),
+(3, 3, 5, 'Kept me hooked from start to finish'),
+(3, 4, 4, 'Loved the characters and humour'),
 
- (4, 1, 5, 'Mind-blowing concept'),
- (4, 5, 4, 'Beautiful cinematography'),
+(4, 1, 5, 'Mind-blowing concept and execution'),
+(4, 5, 4, 'Great animation and action scenes'),
 
- (5, 2, 5, 'One of my favourite dystopian movies'),
- (5, 4, 4, 'Very entertaining'),
+(5, 2, 5, 'Perfect family movie'),
+(5, 4, 4, 'A very entertaining mystery adventure'),
 
- (6, 1, 4, 'Excellent movie with a clever plot'),
- (6, 4, 5, 'Amazing adaptation of the book'),
+(6, 1, 4, 'Excellent movie with a clever plot'),
+(6, 6, 5, 'Deadpool is hilarious and action-packed'),
 
- (7, 5, 5, 'Absolutely incredible world-building'),
+(7, 5, 5, 'One of Disneys best modern films'),
 
- (8, 2, 4, 'Enjoyed the characters'),
- (8, 4, 5, 'Exciting from beginning to end'),
- (8, 5, 4, 'Great soundtrack and visuals'),
+(8, 2, 4, 'Really enjoyed the new characters'),
+(8, 7, 4, 'Funny and nostalgic'),
+(8, 5, 5, 'Baymax stole the show'),
 
- (9, 1, 5, 'A masterpiece'),
- (9, 5, 5, 'One of the best films of the decade'),
+(9, 1, 5, 'A masterpiece'),
+(9, 8, 5, 'Incredible performance by Leonardo DiCaprio'),
 
- (10, 3, 4, 'Interesting concept'),
- (10, 4, 5, 'Would definitely watch again');
+(10, 3, 4, 'Very well written'),
+(10, 4, 5, 'Loved the world and characters');
 
 
 INSERT INTO Follows (follower_id, following_id)
@@ -281,7 +304,6 @@ INSERT INTO Follows (follower_id, following_id)
  (10, 2),
  (10, 7);
 
- 
 
 -- TEST QUERIES
 
