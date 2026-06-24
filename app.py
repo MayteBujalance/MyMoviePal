@@ -10,7 +10,8 @@ app = Flask(__name__)
 
 tmdb = TMDBService("bdf200e3f2bda51ec56715c004745a32")
 
-logic = MovieRecommender()
+logic = MovieRecommender(tmdb) # suggested change to add arguemnt so recommender can access tmdb
+
 
 
 @app.route("/")
@@ -35,7 +36,7 @@ def recommend():
         request.args.get("rating")
     )
 
-    genre = tmdb.mood_to_genre(mood)
+    genre = logic.mood_to_genre_ids(mood) # suggested change to fit with te class tmdb only needs to connect with the api)
 
     movies = tmdb.discover_movies(
         genre,
@@ -53,6 +54,8 @@ def recommend():
 
         if logic.filter_movie(
             details,
+            min_duration,
+            max_duration,
             duration,
             rating
         ):

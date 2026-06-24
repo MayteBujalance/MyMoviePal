@@ -28,6 +28,8 @@ class MovieRecommender:
     def filter_movie(
         self,
         details,
+        min_duration,
+        max_duration,
         duration,
         rating
     ):
