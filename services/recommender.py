@@ -1,6 +1,6 @@
 class MovieRecommender:
 
-    def mood_to_genre(self, mood):
+    def mood_to_genre_ids(self, mood):
 
         mood_map = {
             "happy": ["Comedy", "Family", "Animation"],
@@ -25,19 +25,12 @@ class MovieRecommender:
 
         return ",".join(genre_ids)
 
-    def filter_movie(
-        self,
-        details,
-        min_duration,
-        max_duration,
-        duration,
-        rating
-    ):
+    def filter_movie(self, details, min_duration, max_duration, rating):
 
         runtime = details["runtime"]
         vote = details["vote_average"]
 
         return (
-            runtime <= duration
-            and vote >= rating
+                min_duration <= runtime <= max_duration
+                and vote >= rating
         )

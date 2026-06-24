@@ -2,13 +2,20 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
+from dotenv import load_dotenv
+import os
+
 from services.tmdb_service import TMDBService
 from services.recommender import MovieRecommender
 
 
 app = Flask(__name__)
 
-tmdb = TMDBService("bdf200e3f2bda51ec56715c004745a32")
+# It keepo the API key safe
+load_dotenv()
+
+tmdb = TMDBService(os.getenv("TMDB_API_KEY"))
+
 
 logic = MovieRecommender(tmdb) # suggested change to add arguemnt so recommender can access tmdb
 
@@ -28,9 +35,9 @@ def recommend():
 
     era = request.args.get("era")
 
-    duration = int(
-        request.args.get("duration")
-    )
+    min_duration = int(request.args.get("min_duration", 0))
+    max_duration = int(request.args.get("max_duration", 999))
+
 
     rating = float(
         request.args.get("rating")
@@ -53,11 +60,10 @@ def recommend():
         )
 
         if logic.filter_movie(
-            details,
-            min_duration,
-            max_duration,
-            duration,
-            rating
+                details,
+                min_duration,
+                max_duration,
+                rating
         ):
 
             results.append(details)
