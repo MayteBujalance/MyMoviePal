@@ -6,7 +6,7 @@ class MovieRecommender:
         "happy" : ["Adventure", "Animation", "Comedy", "Family"],
         "sad" : ["Drama", "Romance"],
         "tense": ["Action", "Horror", "Thriller"],
-        "thoughtful": ["Documentary", "Drama", "Sci-Fi"],
+        "thoughtful": ["Documentary", "Drama", "Science Fiction"],
         "chilled": ["Animation", "Comedy", "Family", "Romance"]
     }
 
@@ -54,7 +54,7 @@ class MovieRecommender:
         else:
             return "1900-01-01", "2030-12-31"
 
-    # This is the reccomendation filter part, using Boolean values to see if the movies listed
+    # This is the recommendation filter part, using Boolean values to see if the movies listed
     # match the user's criteria.
     
    def filter_movies(self, details, min_duration, max_duration, rating):
