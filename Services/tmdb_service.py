@@ -11,20 +11,6 @@ class TMDBService:
     def __init__(self, api_key):
         self.api_key = api_key
 
-    def mood_to_genre(self, mood):
-        mood_mapping = {
-            "happy": 35,        # Comedy
-            "sad": 18,          # Drama
-            "tense": 53,        # Thriller
-            "thoughtful": 99,   # Documentary
-            "chilled": 16       # Animation
-        }
-
-        if mood is None:
-            return None
-
-        return mood_mapping.get(mood.lower())
-
     def get_genres(self):
         url = f"{self.BASE_URL}/genre/movie/list"
 
@@ -35,14 +21,32 @@ class TMDBService:
 
         return response.json()
 
-    def discover_movies(self, genre, era):
+    def genre_names_to_ids(self, genre_names):
+        genres_data = self.get_genres()
+
+        genre_lookup = {
+            genre["name"]: genre["id"]
+            for genre in genres_data["genres"]
+        }
+
+        genre_ids = []
+
+        for name in genre_names:
+            if name in genre_lookup:
+                genre_ids.append(str(genre_lookup[name]))
+
+        return ",".join(genre_ids)
+
+    def discover_movies(self, genre_ids, era):
         url = f"{self.BASE_URL}/discover/movie"
 
         params = {
             "api_key": self.api_key,
-            "with_genres": genre,
             "sort_by": "popularity.desc"
         }
+
+        if genre_ids:
+            params["with_genres"] = genre_ids
 
         if era == "classic":
             params["primary_release_date.lte"] = "1989-12-31"
