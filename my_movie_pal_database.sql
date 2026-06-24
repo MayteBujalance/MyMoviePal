@@ -1,5 +1,9 @@
+-- MyMoviePal Database 
+
 CREATE DATABASE MyMoviePal;
 USE MyMoviePal;
+
+-- Database Tables
 
 CREATE TABLE Users(
 user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -62,6 +66,8 @@ FOREIGN KEY(follower_id) REFERENCES Users(user_id),
 FOREIGN KEY(following_id) REFERENCES Users(user_id)
 );
 
+-- User Data (Test Data)
+
 INSERT INTO Users (username, email)
 VALUES
 ('moviebuff22', 'moviebuff22@email.com'),
@@ -74,6 +80,8 @@ VALUES
 ('watchparty', 'watchparty@email.com'),
 ('filmcritic', 'filmcritic@email.com'),
 ('popcornlover', 'popcornlover@email.com');
+
+-- Movie Data (TMDB API Data)
     
 INSERT INTO Movies(tmdb_id, title, release_date, genre, runtime, vote_average, main_actor, streaming_provider, overview, poster_path)
 VALUES(
@@ -180,6 +188,8 @@ VALUES(
 '/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg'
 );
 
+-- User Preferences
+
 INSERT INTO UserPreferences(user_id, mood, genre, duration, era, streaming_provider)
 VALUES
 (1, 'thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
@@ -193,6 +203,7 @@ VALUES
 (9, 'thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
 (10, 'sad', 'Drama', 'Long', '2010s', 'Amazon Prime Video');
 
+-- Watchlists
 
 INSERT INTO Watchlists (user_id, movie_id)
 VALUES
@@ -226,6 +237,8 @@ VALUES
 (10,3),
 (10,4);
 
+-- Ratings
+
 INSERT INTO Ratings(user_id, movie_id, rating, review)
 VALUES
 (1, 1, 5, 'One of the best sci-fi films ever made'),
@@ -258,6 +271,7 @@ VALUES
 (10, 3, 4, 'Very well written'),
 (10, 4, 5, 'Loved the world and characters');
 
+-- Follows
 
 INSERT INTO Follows (follower_id, following_id)
  VALUES
@@ -295,7 +309,7 @@ INSERT INTO Follows (follower_id, following_id)
  (10, 7);
 
 
--- TEST QUERIES
+-- Test Queries
 
 -- Show ratings with user and movie details
 /* SELECT u.username, m.title, r.rating
