@@ -180,27 +180,28 @@ VALUES(
 '/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg'
 );
 
-INSERT INTO UserPreferences(user_id, mood, genre, duration, era, streaming_provider)
+INSERT INTO UserPreferences
+(user_id, mood, genre, duration, era, streaming_provider)
 VALUES
-(1, 'Thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
+(1, 'relaxed', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
 
-(2, 'Happy', 'Animation', 'Medium', '2010s', 'Disney+'),
+(2, 'happy', 'Animation', 'Medium', '2010s', 'Disney+'),
 
-(3, 'Curious', 'Thriller', 'Long', '2010s', 'Amazon Prime Video'),
+(3, 'restless', 'Thriller', 'Long', '2010s', 'Amazon Prime Video'),
 
-(4, 'Relaxed', 'Animation', 'Medium', '2010s', 'Disney+'),
+(4, 'relaxed', 'Animation', 'Medium', '2010s', 'Disney+'),
 
-(5, 'Energetic', 'Action', 'Medium', '2010s', 'Disney+'),
+(5, 'excited', 'Action', 'Medium', '2010s', 'Disney+'),
 
-(6, 'Humorous', 'Comedy', 'Medium', '2010s', 'Disney+'),
+(6, 'happy', 'Comedy', 'Medium', '2010s', 'Disney+'),
 
-(7, 'Nostalgic', 'Animation', 'Short', '2010s', 'Netflix'),
+(7, 'relaxed', 'Animation', 'Short', '2010s', 'Netflix'),
 
-(8, 'Ambitious', 'Drama', 'Long', '2010s', 'Netflix'),
+(8, 'excited', 'Drama', 'Long', '2010s', 'Netflix'),
 
-(9, 'Thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
+(9, 'relaxed', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
 
-(10, 'Curious', 'Drama', 'Long', '2010s', 'Amazon Prime Video');
+(10, 'restless', 'Drama', 'Long', '2010s', 'Amazon Prime Video');
 
 
 INSERT INTO Watchlists (user_id, movie_id)
