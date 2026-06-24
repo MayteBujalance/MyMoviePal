@@ -180,28 +180,18 @@ VALUES(
 '/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg'
 );
 
-INSERT INTO UserPreferences
-(user_id, mood, genre, duration, era, streaming_provider)
+INSERT INTO UserPreferences(user_id, mood, genre, duration, era, streaming_provider)
 VALUES
-(1, 'relaxed', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
-
+(1, 'thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
 (2, 'happy', 'Animation', 'Medium', '2010s', 'Disney+'),
-
-(3, 'restless', 'Thriller', 'Long', '2010s', 'Amazon Prime Video'),
-
-(4, 'relaxed', 'Animation', 'Medium', '2010s', 'Disney+'),
-
-(5, 'excited', 'Action', 'Medium', '2010s', 'Disney+'),
-
+(3, 'tense', 'Thriller', 'Long', '2010s', 'Amazon Prime Video'),
+(4, 'chilled', 'Animation', 'Medium', '2010s', 'Disney+'),
+(5, 'tense', 'Action', 'Medium', '2010s', 'Disney+'),
 (6, 'happy', 'Comedy', 'Medium', '2010s', 'Disney+'),
-
-(7, 'relaxed', 'Animation', 'Short', '2010s', 'Netflix'),
-
-(8, 'excited', 'Drama', 'Long', '2010s', 'Netflix'),
-
-(9, 'relaxed', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
-
-(10, 'restless', 'Drama', 'Long', '2010s', 'Amazon Prime Video');
+(7, 'chilled', 'Animation', 'Short', '2010s', 'Netflix'),
+(8, 'thoughtful', 'Drama', 'Long', '2010s', 'Netflix'),
+(9, 'thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
+(10, 'sad', 'Drama', 'Long', '2010s', 'Amazon Prime Video');
 
 
 INSERT INTO Watchlists (user_id, movie_id)
@@ -236,14 +226,13 @@ VALUES
 (10,3),
 (10,4);
 
-INSERT INTO Ratings
-(user_id, movie_id, rating, review)
+INSERT INTO Ratings(user_id, movie_id, rating, review)
 VALUES
 (1, 1, 5, 'One of the best sci-fi films ever made'),
-(1, 5, 5, 'Baymax was hilarious and heartwarming'),
+(1, 8, 5, 'Incredible performance by Leonardo DiCaprio'),
 
 (2, 2, 4, 'A fun and emotional ending to the Toy Story series'),
-(2, 3, 5, 'Brilliant story with an unexpected ending'),
+(2, 5, 5, 'Baymax was a fantastic character'),
 
 (3, 3, 5, 'Kept me hooked from start to finish'),
 (3, 4, 4, 'Loved the characters and humour'),
