@@ -12,23 +12,6 @@ class MovieRecommender:
 
     def __init__(self, tmdb_service):
         self.tmdb_service = tmdb_service
-
-
-    # This method is used to convert the above mood and genre selections to the genres in TMDb
-    # with their associated ids. Each matching genre to id will save in the genre_ids list.
-    def mood_to_genre_ids(self, movie_genre, mood):
-        genre_names = self.MOOD_GENRES.get(mood.lower(), [])
-        return movie_genre in current_genres
-
-        genres = self.tmdb_servoce.get_genres()["genres"]
-
-        genre_ids = []
-
-        for genre in grenres:
-            if genre["name"] in genre_names:
-                genre_ids.append(str(genre["id"]))
-                
-        return ",".join(genre_ids)
     
     # Movie lengths ranging up to 4 hours are the standard movie length.
     def find_movie_duration(self, duration_length):
