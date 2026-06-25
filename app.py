@@ -8,16 +8,26 @@ import os
 from services.tmdb_service import TMDBService
 from services.recommender import MovieRecommender
 
+import mysql.connector
+
+# Connects to DB and keeps passwords safe
+load_dotenv()
+
+db = mysql.connector.connect(
+    host=os.getenv("DB_HOST"),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME")
+)
+
+cursor = db.cursor(dictionary=True)
 
 app = Flask(__name__)
-
-# It keepo the API key safe
-load_dotenv()
 
 tmdb = TMDBService(os.getenv("TMDB_API_KEY"))
 
 
-logic = MovieRecommender(tmdb) # suggested change to add arguemnt so recommender can access tmdb
+logic = MovieRecommender() # suggested change to add argument so recommender can access tmdb
 
 
 
@@ -43,13 +53,10 @@ def recommend():
         request.args.get("rating")
     )
 
-    genre = logic.mood_to_genre_ids(mood) # suggested change to fit with te class tmdb only needs to connect with the api)
+    genre_names = logic.MOOD_GENRES.get(mood.lower(), []) # suggested change to fit with te class tmdb only needs to connect with the api)
+    genre_ids = tmdb.genre_names_to_ids(genre_names)
 
-    movies = tmdb.discover_movies(
-        genre,
-        era
-    )
-
+    movies = tmdb.discover_movies(genre_ids, era)
 
     results = []
 
@@ -74,6 +81,73 @@ def recommend():
         movies=results
     )
 
+# Internal API
+# gets all movies from the DB
+@app.route("/movies")
+def get_movies():
+    cursor.execute("SELECT * FROM Movies")
+    movies = cursor.fetchall()
+    return {"movies": movies}
 
+# Inserts/creates a rating
+@app.route("/rate", methods=["POST"])
+def add_rating():
+    data = request.json
+
+    cursor.execute("""
+        INSERT INTO Ratings (user_id, movie_id, rating, review)
+        VALUES (%s, %s, %s, %s)
+    """, (
+        data["user_id"],
+        data["movie_id"],
+        data["rating"],
+        data.get("review", "")
+    ))
+
+    db.commit()
+    return {"message": "Rating added"}
+
+# Updates streaming provider preferences
+@app.route("/preferences/<int:user_id>", methods=["PUT"])
+def update_preferences(user_id):
+    data = request.json
+
+    cursor.execute("""
+        UPDATE UserPreferences
+        SET streaming_provider = %s
+        WHERE user_id = %s
+    """, (
+        data["streaming_provider"],
+        user_id
+    ))
+
+    db.commit()
+    return {"message": "Preferences updated"}
+
+# User can select all movies in their watchlist
+@app.route("/users/<int:user_id>/watchlist")
+def get_watchlist(user_id):
+
+    cursor.execute("""
+    SELECT m.title, m.genre, m.streaming_provider
+    FROM Watchlists w
+    JOIN Movies m
+    ON w.movie_id = m.movie_id
+    WHERE w.user_id=%s
+    """, (user_id,))
+
+    return cursor.fetchall()
+
+# Deletes from watchlist
+@app.route("/watchlist/<int:watchlist_id>", methods=["DELETE"])
+def delete_watchlist_item(watchlist_id):
+
+    cursor.execute("""
+        DELETE FROM Watchlists
+        WHERE watchlist_id = %s
+    """, (watchlist_id,))
+
+    db.commit()
+    return {"message": "Deleted from watchlist"}
 if __name__ == "__main__":
     app.run(debug=True)
