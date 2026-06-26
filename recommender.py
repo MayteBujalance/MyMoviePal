@@ -34,8 +34,8 @@ class MovieRecommender:
         else:
             return "1900-01-01", "2030-12-31"
 
-    # This is the recommendation filter part, using Boolean values to see if the movies listed
-    # match the user's criteria.
+    # This is the recommendation filter part, using a function and a loop to ensure the films listed
+    # match the runtime and rating criteria.
     
     def filter_movies(self, details, min_duration, max_duration, rating):
        runtime = details.get("runtime")
