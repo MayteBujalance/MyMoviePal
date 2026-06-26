@@ -37,11 +37,11 @@ class MovieRecommender:
     # This is the recommendation filter part, using Boolean values to see if the movies listed
     # match the user's criteria.
     
-   def filter_movies(self, details, min_duration, max_duration, rating):
+    def filter_movies(self, details, min_duration, max_duration, rating):
        runtime = details.get("runtime")
        vote = details.get("vote_average")
 
-       if runtime is None of vote is None:
+       if runtime is None or vote is None:
            return False
 
         return (
