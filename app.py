@@ -60,7 +60,7 @@ def recommend():
             movie["id"]
         )
 
-        if logic.filter_movie(
+        if logic.filter_movies(
                 details,
                 min_duration,
                 max_duration,
