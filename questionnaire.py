@@ -10,7 +10,7 @@ class UserQuestionnaire:
         mood = inquirer.select(
             message="How are you feeling?",
             choices=[
-                "😊 Happy - I want somthing fun and uplifting",
+                "😊 Happy - I want something fun and uplifting",
                 "😢 Sad - I need a good cry",
                 "😱 Tense - I want something thrilling",
                 "🤔 Thoughtful - I'm in the mood for something deep",

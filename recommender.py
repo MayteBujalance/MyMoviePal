@@ -1,5 +1,20 @@
 from datetime import datetime
 
+
+def filter_movies(details, min_duration, max_duration, rating):
+    runtime = details.get("runtime")
+    vote = details.get("vote_average")
+
+    if runtime is None or vote is None:
+        return False
+
+    return (
+            runtime >= min_duration
+            and runtime <= max_duration
+            and vote >= rating
+    )
+
+
 class MovieRecommender:
 
     MOOD_GENRES = {
@@ -36,16 +51,4 @@ class MovieRecommender:
 
     # This is the recommendation filter part, using a function and a loop to ensure the films listed
     # match the runtime and rating criteria.
-    
-    def filter_movies(self, details, min_duration, max_duration, rating):
-       runtime = details.get("runtime")
-       vote = details.get("vote_average")
 
-       if runtime is None or vote is None:
-           return False
-
-        return(
-            runtime >= min_duration
-            and runtime <= max_duration
-            and vote >= rating
-            )

@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 
 from services.tmdb_service import TMDBService
-from services.recommender import MovieRecommender
+from recommender import MovieRecommender
 
 import mysql.connector
 
@@ -68,7 +68,7 @@ def recommend():
             movie["id"]
         )
 
-        if logic.filter_movies(
+        if filter_movies(
             details,
             min_duration,
             max_duration,
