@@ -44,7 +44,7 @@ class MovieRecommender:
        if runtime is None or vote is None:
            return False
 
-        return (
+        return(
             runtime >= min_duration
             and runtime <= max_duration
             and vote >= rating
