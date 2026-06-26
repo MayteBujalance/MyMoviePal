@@ -57,14 +57,6 @@ FOREIGN KEY(user_id) REFERENCES Users(user_id),
 FOREIGN KEY(movie_id) REFERENCES Movies(movie_id)
 );
 
-CREATE TABLE Follows(
-follow_id INT AUTO_INCREMENT PRIMARY KEY,
-follower_id INT NOT NULL,
-following_id INT NOT NULL,
-created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-FOREIGN KEY(follower_id) REFERENCES Users(user_id),
-FOREIGN KEY(following_id) REFERENCES Users(user_id)
-);
 
 -- User Data (Test Data)
 
