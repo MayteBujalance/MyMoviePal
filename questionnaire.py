@@ -10,24 +10,27 @@ class UserQuestionnaire:
         mood = inquirer.select(
             message="How are you feeling?",
             choices=[
-                "😊Happy - I want somthing fun and uplifting",
-                "😢Sad - I need a good cry",
-                "😱Tense - I want something thrilling",
-                "🤔Thoughtful - I'm in the mood for something deep",
-                "😴Chilled - Something easy to watch"
+                "😊 Happy - I want somthing fun and uplifting",
+                "😢 Sad - I need a good cry",
+                "😱 Tense - I want something thrilling",
+                "🤔 Thoughtful - I'm in the mood for something deep",
+                "😴 Chilled - Something easy to watch"
             ]
         ).execute()
 
+        # Extracts the first word and converts to lowercase to match what the rest of the app excepts
+        mood_clean = mood.split(" ")[1].lower()
+
         # Confirms the user is happy with their choice
         confirm = inquirer.confirm(
-            message=f"You chose '{mood}', is this correct?"
+            message=f"You chose '{mood_clean}', is this correct?"
             ).execute()
 
         # If not happy, asks again
         if not confirm:
             return self.get_mood()
 
-        return mood
+        return mood_clean
 
     # Asks the user which genre they want
     def get_genre(self):
@@ -46,16 +49,19 @@ class UserQuestionnaire:
             ]
         ).execute()
 
+        # Converts to lowercase to match what the rest of the app excepts
+        genre_clean = genre.lower()
+
         # Confirms the user is happy with their choice
         confirm = inquirer.confirm(
-            message=f"You chose '{genre}', is this correct?"
+            message=f"You chose '{genre_clean}', is this correct?"
         ).execute()
 
         # If not happy, asks again
         if not confirm:
             return self.get_genre()
 
-        return genre
+        return genre_clean
 
     # Asks the user how long they have
     def get_duration(self):
@@ -64,20 +70,23 @@ class UserQuestionnaire:
             choices=[
             "Short (under 90mins)",
             "Standard (90-120mins)",
-            "Epic (2hrs+)"
+            "Long (2hrs+)"
             ]
         ).execute()
 
+        # Extracts the first word and converts to lowercase to match what the rest of the app excepts
+        duration_clean = duration.split(" ")[0].lower()
+
         # Confirms the user is happy with their choice
         confirm = inquirer.confirm(
-            message=f"You chose '{duration}', is this correct?"
+            message=f"You chose '{duration_clean}', is this correct?"
         ).execute()
 
         # If not happy, asks again
         if not confirm:
             return self.get_duration()
 
-        return duration
+        return duration_clean
 
     # Asks the user which era they want
     def get_era(self):
@@ -91,16 +100,25 @@ class UserQuestionnaire:
             ]
         ).execute()
 
+        # Maps each choice to a clean value the rest of the app expects
+        era_map = {
+            "Classic (pre 1990)": "classic",
+            "90s_2000s": "90s_2000s",
+            "Modern (2010s)": "modern",
+            "Latest releases": "latest"
+        }
+        era_clean = era_map[era]
+
         # Confirms the user is happy with their choice
         confirm = inquirer.confirm(
-            message=f"You chose '{era}', is this correct?"
+            message=f"You chose '{era_clean}', is this correct?"
         ).execute()
 
         # If not happy, asks again
         if not confirm:
             return self.get_era()
 
-        return era
+        return era_clean
 
     # Asks the user which how they're watching e.g. streaming service
     def get_streaming(self):
@@ -115,18 +133,21 @@ class UserQuestionnaire:
             ]
         ).execute()
 
+        # Converts to lowercase to match what the rest of the app excepts
+        streaming_clean = streaming.lower()
+
         # Confirms the user is happy with their choice
         confirm = inquirer.confirm(
-            message=f"You chose '{streaming}', is this correct?"
+            message=f"You chose '{streaming_clean}', is this correct?"
         ).execute()
 
         # If not happy, asks again
         if not confirm:
             return self.get_streaming()
 
-        return streaming
+        return streaming_clean
 
-# Runs through all the questions and returns the users answers
+    # Runs through all the questions and returns the users answers
     def run(self):
         try:
             print("\n🎬Welcome to MyMoviePal!")
