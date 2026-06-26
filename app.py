@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 import os
 
 from services.tmdb_service import TMDBService
-from services.recommender import MovieRecommender
 
 import mysql.connector
 
@@ -25,11 +24,6 @@ cursor = db.cursor(dictionary=True)
 app = Flask(__name__)
 
 tmdb = TMDBService(os.getenv("TMDB_API_KEY"))
-
-
-logic = MovieRecommender() # suggested change to add argument so recommender can access tmdb
-
-
 
 @app.route("/")
 def home():
@@ -50,7 +44,7 @@ def recommend():
 
 
     rating = float(
-        request.args.get("rating")
+        request.args.get("rating", 0) # makes rating safer
     )
 
     genre_names = logic.MOOD_GENRES.get(mood.lower(), []) # suggested change to fit with te class tmdb only needs to connect with the api)
