@@ -6,10 +6,11 @@ from dotenv import load_dotenv
 import os
 
 from services.tmdb_service import TMDBService
+from services.recommender import MovieRecommender
 
 import mysql.connector
 
-# Connects to DB and keeps passwords safe
+# Connects to DB and keeps passwords/API keys safe
 load_dotenv()
 
 db = mysql.connector.connect(
@@ -24,33 +25,40 @@ cursor = db.cursor(dictionary=True)
 app = Flask(__name__)
 
 tmdb = TMDBService(os.getenv("TMDB_API_KEY"))
+logic = MovieRecommender()
+
 
 @app.route("/")
 def home():
-
     return render_template("index.html")
 
 
 @app.route("/recommend")
-
 def recommend():
 
     mood = request.args.get("mood")
-
     era = request.args.get("era")
 
     min_duration = int(request.args.get("min_duration", 0))
     max_duration = int(request.args.get("max_duration", 999))
 
-
     rating = float(
-        request.args.get("rating", 0) # makes rating safer
+        request.args.get("rating", 0)
     )
 
-    genre_names = logic.MOOD_GENRES.get(mood.lower(), []) # suggested change to fit with te class tmdb only needs to connect with the api)
-    genre_ids = tmdb.genre_names_to_ids(genre_names)
+    genre_names = logic.MOOD_GENRES.get(
+        mood.lower(),
+        []
+    )
 
-    movies = tmdb.discover_movies(genre_ids, era)
+    genre_ids = tmdb.genre_names_to_ids(
+        genre_names
+    )
+
+    movies = tmdb.discover_movies(
+        genre_ids,
+        era
+    )
 
     results = []
 
@@ -61,29 +69,27 @@ def recommend():
         )
 
         if logic.filter_movies(
-                details,
-                min_duration,
-                max_duration,
-                rating
+            details,
+            min_duration,
+            max_duration,
+            rating
         ):
 
             results.append(details)
-
 
     return render_template(
         "results.html",
         movies=results
     )
 
-# Internal API
-# gets all movies from the DB
+
 @app.route("/movies")
 def get_movies():
     cursor.execute("SELECT * FROM Movies")
     movies = cursor.fetchall()
     return {"movies": movies}
 
-# Inserts/creates a rating
+
 @app.route("/rate", methods=["POST"])
 def add_rating():
     data = request.json
@@ -101,7 +107,7 @@ def add_rating():
     db.commit()
     return {"message": "Rating added"}
 
-# Updates streaming provider preferences
+
 @app.route("/preferences/<int:user_id>", methods=["PUT"])
 def update_preferences(user_id):
     data = request.json
@@ -118,21 +124,21 @@ def update_preferences(user_id):
     db.commit()
     return {"message": "Preferences updated"}
 
-# User can select all movies in their watchlist
+
 @app.route("/users/<int:user_id>/watchlist")
 def get_watchlist(user_id):
 
     cursor.execute("""
-    SELECT m.title, m.genre, m.streaming_provider
-    FROM Watchlists w
-    JOIN Movies m
-    ON w.movie_id = m.movie_id
-    WHERE w.user_id=%s
+        SELECT m.title, m.genre, m.streaming_provider
+        FROM Watchlists w
+        JOIN Movies m
+        ON w.movie_id = m.movie_id
+        WHERE w.user_id = %s
     """, (user_id,))
 
     return cursor.fetchall()
 
-# Deletes from watchlist
+
 @app.route("/watchlist/<int:watchlist_id>", methods=["DELETE"])
 def delete_watchlist_item(watchlist_id):
 
@@ -143,5 +149,7 @@ def delete_watchlist_item(watchlist_id):
 
     db.commit()
     return {"message": "Deleted from watchlist"}
+
+
 if __name__ == "__main__":
     app.run(debug=True)
