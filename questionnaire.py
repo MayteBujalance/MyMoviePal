@@ -128,18 +128,26 @@ class UserQuestionnaire:
 
 # Runs through all the questions and returns the users answers
     def run(self):
-        print("\n🎬Welcome to MyMoviePal!")
-        print("Answer a few questions and we'll find your perfect film!\n")
+        try:
+            print("\n🎬Welcome to MyMoviePal!")
+            print("Answer a few questions and we'll find your perfect film!\n")
 
-        mood = self.get_mood()
-        genre = self.get_genre()
-        duration = self.get_duration()
-        era = self.get_era()
-        streaming = self.get_streaming()
+            mood = self.get_mood()
+            genre = self.get_genre()
+            duration = self.get_duration()
+            era = self.get_era()
+            streaming = self.get_streaming()
 
-        print(f"\n🎬Great choices! Finding your perfect film...\n")
+            print(f"\n🎬Great choices! Finding your perfect film...\n")
 
-        return mood, genre, duration, era, streaming
+            return mood, genre, duration, era, streaming
+
+        # created if users wish to exit the questionnaire early
+        except KeyboardInterrupt:
+            print("\n\nNo worries, come back when you're ready! 🎬")
+        # created to catch unexpected errors to prevent the app from crashing
+        except Exception as e:
+            print(f"\nSomething went wrong: {e}")
 
 # Kicks things off
 questionnaire = UserQuestionnaire()
