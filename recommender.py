@@ -9,9 +9,6 @@ class MovieRecommender:
         "thoughtful": ["Documentary", "Drama", "Science Fiction"],
         "chilled": ["Animation", "Comedy", "Family", "Romance"]
     }
-
-    def __init__(self, tmdb_service):
-        self.tmdb_service = tmdb_service
     
     # Movie lengths ranging up to 4 hours are the standard movie length.
     def find_movie_duration(self, duration_length):
