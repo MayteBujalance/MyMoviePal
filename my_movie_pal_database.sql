@@ -271,43 +271,6 @@ VALUES
 (10, 3, 4, 'Very well written'),
 (10, 4, 5, 'Loved the world and characters');
 
--- Follows
-
-INSERT INTO Follows (follower_id, following_id)
- VALUES
- (1, 2),
- (1, 4),
- (1, 9),
-
- (2, 1),
- (2, 3),
- (2, 8),
-
- (3, 4),
- (3, 6),
-
- (4, 1),
- (4, 5),
- (4, 10),
-
- (5, 2),
- (5, 7),
-
- (6, 3),
- (6, 8),
-
- (7, 1),
- (7, 9),
-
- (8, 4),
- (8, 10),
-
- (9, 1),
- (9, 5),
-
- (10, 2),
- (10, 7);
-
 
 -- Test Queries
 
