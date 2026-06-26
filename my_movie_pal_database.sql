@@ -192,16 +192,16 @@ VALUES(
 
 INSERT INTO UserPreferences(user_id, mood, genre, duration, era, streaming_provider)
 VALUES
-(1, 'thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
-(2, 'happy', 'Animation', 'Medium', '2010s', 'Disney+'),
-(3, 'tense', 'Thriller', 'Long', '2010s', 'Amazon Prime Video'),
-(4, 'chilled', 'Animation', 'Medium', '2010s', 'Disney+'),
-(5, 'tense', 'Action', 'Medium', '2010s', 'Disney+'),
-(6, 'happy', 'Comedy', 'Medium', '2010s', 'Disney+'),
-(7, 'chilled', 'Animation', 'Short', '2010s', 'Netflix'),
-(8, 'thoughtful', 'Drama', 'Long', '2010s', 'Netflix'),
-(9, 'thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
-(10, 'sad', 'Drama', 'Long', '2010s', 'Amazon Prime Video');
+(1, 'thoughtful', 'Science Fiction', 'long', 'modern', 'Amazon Prime'),
+(2, 'happy', 'Animation', 'standard', 'modern', 'Disney+'),
+(3, 'tense', 'Thriller', 'long', 'modern', 'Amazon Prime Video'),
+(4, 'chilled', 'Animation', 'standard', 'modern', 'Disney+'),
+(5, 'tense', 'Action', 'standard', 'modern', 'Disney+'),
+(6, 'happy', 'Comedy', 'standard', 'modern', 'Disney+'),
+(7, 'chilled', 'Animation', 'short', 'modern', 'Netflix'),
+(8, 'thoughtful', 'Drama', 'long', 'modern', 'Netflix'),
+(9, 'thoughtful', 'Science Fiction', 'long', 'modern', 'Amazon Prime'),
+(10, 'sad', 'Drama', 'long', 'modern', 'Amazon Prime Video');
 
 -- Watchlists
 
