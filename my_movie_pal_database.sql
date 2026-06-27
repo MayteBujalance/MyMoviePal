@@ -1,5 +1,9 @@
+-- MyMoviePal Database 
+
 CREATE DATABASE MyMoviePal;
 USE MyMoviePal;
+
+-- Database Tables
 
 CREATE TABLE Users(
 user_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -53,14 +57,8 @@ FOREIGN KEY(user_id) REFERENCES Users(user_id),
 FOREIGN KEY(movie_id) REFERENCES Movies(movie_id)
 );
 
-CREATE TABLE Follows(
-follow_id INT AUTO_INCREMENT PRIMARY KEY,
-follower_id INT NOT NULL,
-following_id INT NOT NULL,
-created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-FOREIGN KEY(follower_id) REFERENCES Users(user_id),
-FOREIGN KEY(following_id) REFERENCES Users(user_id)
-);
+
+-- User Data (Test Data)
 
 INSERT INTO Users (username, email)
 VALUES
@@ -74,6 +72,8 @@ VALUES
 ('watchparty', 'watchparty@email.com'),
 ('filmcritic', 'filmcritic@email.com'),
 ('popcornlover', 'popcornlover@email.com');
+
+-- Movie Data (TMDB API Data)
     
 INSERT INTO Movies(tmdb_id, title, release_date, genre, runtime, vote_average, main_actor, streaming_provider, overview, poster_path)
 VALUES(
@@ -180,19 +180,22 @@ VALUES(
 '/kW9LmvYHAaS9iA0tHmZVq8hQYoq.jpg'
 );
 
+-- User Preferences
+
 INSERT INTO UserPreferences(user_id, mood, genre, duration, era, streaming_provider)
 VALUES
-(1, 'thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
-(2, 'happy', 'Animation', 'Medium', '2010s', 'Disney+'),
-(3, 'tense', 'Thriller', 'Long', '2010s', 'Amazon Prime Video'),
-(4, 'chilled', 'Animation', 'Medium', '2010s', 'Disney+'),
-(5, 'tense', 'Action', 'Medium', '2010s', 'Disney+'),
-(6, 'happy', 'Comedy', 'Medium', '2010s', 'Disney+'),
-(7, 'chilled', 'Animation', 'Short', '2010s', 'Netflix'),
-(8, 'thoughtful', 'Drama', 'Long', '2010s', 'Netflix'),
-(9, 'thoughtful', 'Science Fiction', 'Long', '2010s', 'Amazon Prime'),
-(10, 'sad', 'Drama', 'Long', '2010s', 'Amazon Prime Video');
+(1, 'thoughtful', 'Science Fiction', 'long', 'modern', 'Amazon Prime'),
+(2, 'happy', 'Animation', 'standard', 'modern', 'Disney+'),
+(3, 'tense', 'Thriller', 'long', 'modern', 'Amazon Prime Video'),
+(4, 'chilled', 'Animation', 'standard', 'modern', 'Disney+'),
+(5, 'tense', 'Action', 'standard', 'modern', 'Disney+'),
+(6, 'happy', 'Comedy', 'standard', 'modern', 'Disney+'),
+(7, 'chilled', 'Animation', 'short', 'modern', 'Netflix'),
+(8, 'thoughtful', 'Drama', 'long', 'modern', 'Netflix'),
+(9, 'thoughtful', 'Science Fiction', 'long', 'modern', 'Amazon Prime'),
+(10, 'sad', 'Drama', 'long', 'modern', 'Amazon Prime Video');
 
+-- Watchlists
 
 INSERT INTO Watchlists (user_id, movie_id)
 VALUES
@@ -225,6 +228,8 @@ VALUES
 
 (10,3),
 (10,4);
+
+-- Ratings
 
 INSERT INTO Ratings(user_id, movie_id, rating, review)
 VALUES
@@ -259,43 +264,7 @@ VALUES
 (10, 4, 5, 'Loved the world and characters');
 
 
-INSERT INTO Follows (follower_id, following_id)
- VALUES
- (1, 2),
- (1, 4),
- (1, 9),
-
- (2, 1),
- (2, 3),
- (2, 8),
-
- (3, 4),
- (3, 6),
-
- (4, 1),
- (4, 5),
- (4, 10),
-
- (5, 2),
- (5, 7),
-
- (6, 3),
- (6, 8),
-
- (7, 1),
- (7, 9),
-
- (8, 4),
- (8, 10),
-
- (9, 1),
- (9, 5),
-
- (10, 2),
- (10, 7);
-
-
--- TEST QUERIES
+-- Test Queries
 
 -- Show ratings with user and movie details
 /* SELECT u.username, m.title, r.rating
