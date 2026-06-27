@@ -103,7 +103,7 @@ class UserQuestionnaire:
         # Maps each choice to a clean value the rest of the app expects
         era_map = {
             "Classic (pre 1990)": "classic",
-            "90s_2000s": "90s_2000s",
+            "90s/2000s": "90s_2000s",
             "Modern (2010s)": "modern",
             "Latest releases": "latest"
         }
