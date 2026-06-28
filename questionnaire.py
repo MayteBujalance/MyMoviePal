@@ -171,5 +171,6 @@ class UserQuestionnaire:
             print(f"\nSomething went wrong: {e}")
 
 # Kicks things off
-questionnaire = UserQuestionnaire()
-questionnaire.run()
+if __name__ == "__main__":
+    questionnaire = UserQuestionnaire()
+    questionnaire.run()

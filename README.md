@@ -109,11 +109,7 @@ Run `my_movie_pal_database.sql` in dBeaver to create the database and tables.
 
 Open a terminal and run:
 ```bash
-python3 app.py
-```
-Open a second terminal and run:
-```bash
-python3 questionnaire.py
+python3 main.py
 ```
 ---
 
@@ -124,6 +120,7 @@ MyMoviePal/
 │
 ├── services/
 ├── app.py
+├── main.py
 ├── questionnaire.py
 ├── recommender.py
 ├── my_movie_pal_database.sql
@@ -132,7 +129,6 @@ MyMoviePal/
 └── .gitignore
 └── .env.example
 ```
-
 ---
 
 ## 💡 How It Works
