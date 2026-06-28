@@ -172,4 +172,4 @@ class UserQuestionnaire:
 
 # Kicks things off
 questionnaire = UserQuestionnaire()
-questionnaire.run()
+mood, genre, duration, era, streaming = questionnaire.run()
