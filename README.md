@@ -32,25 +32,21 @@ The goal of MyMoviePal is to:
 
 ### Current Features
 
-- User questionnaire to collect movie preferences.
-- Recommendation engine based on user responses.
+- User questionnaire to collect movie preferences (mood, genre, duration, era and streaming provider)
+- Recommendation engine powered by TMDB API
+- Filtering by genre, release year, runtime and streaming provider
+- Watchlist functionality
+- Rating and review system
+- Database integration for data persistence 
 - Movie information display.
-- Search and filtering functionality.
 
 ### Planned Features
 
-- Integration with movie and streaming APIs.
 - User accounts and saved favourites.
-- Watchlist functionality.
 - Friend and group recommendations.
 - Movie night / watch party mode.
 - Recommendation history.
-- Advanced filtering by:
-  - Genre
-  - Release year
-  - Runtime
-  - Age rating
-  - Streaming provider
+- Age rating filtering.
 
 ---
 
@@ -59,10 +55,11 @@ The goal of MyMoviePal is to:
 This project is being developed as part of the **Code First Girls Group Project**.
 
 - Python
-- APIs
-- Git & GitHub
-- MySQL
 - Flask
+- MySQL
+- TMDB API
+- InquirerPy
+- Git & GitHub
 
 ---
 
@@ -71,7 +68,7 @@ This project is being developed as part of the **Code First Girls Group Project*
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/MyMoviePal.git
+git clone https://github.com/lauradolan23/group6moviepal.git
 cd MyMoviePal
 ```
 
@@ -101,12 +98,23 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+### Set Up Environment Variables
+Create a .env file using the .env.example template provided and fill in 
+your own values including your TMDB API key and local MySQL credentials.
+
+### Set Up the Database
+Run `my_movie_pal_database.sql` in dBeaver to create the database and tables.
+
 ### Run the Application
 
+Open a terminal and run:
 ```bash
-python main.py
+python3 app.py
 ```
-
+Open a second terminal and run:
+```bash
+python3 questionnaire.py
+```
 ---
 
 ## 📂 Project Structure
@@ -114,13 +122,15 @@ python main.py
 ```text
 MyMoviePal/
 │
-├── data/
-├── src/
-├── tests/
-├── docs/
+├── services/
+├── app.py
+├── questionnaire.py
+├── recommender.py
+├── my_movie_pal_database.sql
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+└── .env.example
 ```
 
 ---
