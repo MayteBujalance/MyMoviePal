@@ -1,6 +1,9 @@
 from datetime import datetime
 
 
+# This is the recommendation filter part, using a function and a loop to ensure the films listed
+# match the runtime and rating criteria.
+
 def filter_movies(details, min_duration, max_duration, rating):
     runtime = details.get("runtime")
     vote = details.get("vote_average")
@@ -48,7 +51,4 @@ class MovieRecommender:
             return "2020-01-01", "2030-12-31"
         else:
             return "1900-01-01", "2030-12-31"
-
-    # This is the recommendation filter part, using a function and a loop to ensure the films listed
-    # match the runtime and rating criteria.
 
