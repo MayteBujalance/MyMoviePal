@@ -1,9 +1,44 @@
 import os
 from dotenv import load_dotenv
+import mysql.connector
 
 from questionnaire import UserQuestionnaire
 from recommender import MovieRecommender
 from services.tmdb_service import TMDBService
+
+
+def save_user_preferences(user_id, mood, genre, duration, era, streaming):
+    db = mysql.connector.connect(
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME")
+    )
+
+    cursor = db.cursor()
+
+    cursor.execute("""
+        INSERT INTO UserPreferences (
+            user_id,
+            mood,
+            genre,
+            duration,
+            era,
+            streaming_provider
+        )
+        VALUES (%s, %s, %s, %s, %s, %s)
+    """, (
+        user_id,
+        mood,
+        genre,
+        duration,
+        era,
+        streaming
+    ))
+
+    db.commit()
+    cursor.close()
+    db.close()
 
 
 def main():
@@ -18,6 +53,17 @@ def main():
     questionnaire = UserQuestionnaire()
     mood, genre, duration, era, streaming = questionnaire.run()
 
+    save_user_preferences(
+        1,
+        mood,
+        genre,
+        duration,
+        era,
+        streaming
+    )
+
+    print("✅ Your preferences have been saved.")
+
     tmdb = TMDBService(api_key)
     recommender = MovieRecommender()
 
@@ -28,20 +74,21 @@ def main():
 
     genre_ids = tmdb.genre_names_to_ids(genre_names)
 
-    movies = tmdb.discover_movies(genre_ids, era)
+    movies = tmdb.discover_movies(
+        genre_ids,
+        era
+    )
 
-
-    min_duration, max_duration = recommender.find_movie_duration(duration)
+    min_duration, max_duration = recommender.find_movie_duration(
+        duration
+    )
 
     recommendations = []
 
     for movie in movies["results"]:
-        details = tmdb.get_movie_details(movie["id"])
 
-        print(
-            details["title"],
-            details.get("runtime"),
-            details.get("vote_average")
+        details = tmdb.get_movie_details(
+            movie["id"]
         )
 
         if recommender.filter_movies(
@@ -52,7 +99,6 @@ def main():
         ):
             recommendations.append(details)
 
-
     print("\n🎬 Here are your recommendations:\n")
 
     if not recommendations:
@@ -60,6 +106,7 @@ def main():
         return
 
     for movie in recommendations[:5]:
+
         print(movie["title"])
         print(f"Runtime: {movie.get('runtime')} minutes")
         print(f"Rating: {movie.get('vote_average')}")
