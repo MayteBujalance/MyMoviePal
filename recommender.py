@@ -44,7 +44,7 @@ class MovieRecommender:
             return "1990-01-01", "2009-12-31"
         elif era_selection == "modern":
             return "2010-01-01", "2019-12-31"
-        elif era_selection == "newest":
+        elif era_selection == "latest":
             return "2020-01-01", "2030-12-31"
         else:
             return "1900-01-01", "2030-12-31"
