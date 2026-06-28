@@ -24,6 +24,7 @@ class TMDBService:
     def genre_names_to_ids(self, genre_names):
         genres_data = self.get_genres()
 
+
         genre_lookup = {
             genre["name"]: genre["id"]
             for genre in genres_data["genres"]
