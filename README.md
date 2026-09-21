@@ -52,8 +52,6 @@ The goal of MyMoviePal is to:
 
 ## 🛠️ Technologies Used
 
-This project is being developed as part of the **Code First Girls Group Project**.
-
 - Python
 - Flask
 - MySQL
@@ -68,8 +66,8 @@ This project is being developed as part of the **Code First Girls Group Project*
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/lauradolan23/group6moviepal.git
-cd group6moviepal
+git clone https://github.com/MayteBujalance/MyMoviePal.git
+cd MyMoviePal
 ```
 
 ### Create a Virtual Environment
@@ -174,7 +172,7 @@ MyMoviePal/
 
 🚧 **Currently in Development**
 
-This project is being developed as part of the Code First Girls programme. Features and documentation will continue to evolve throughout development.
+The project is currently in development, with features and documentation continuing to evolve.
 
 ---
 
@@ -186,7 +184,7 @@ This repository is maintained by Group Six. Team members are encouraged to creat
 
 ## 📜 License
 
-This project is intended for educational purposes as part of the Code First Girls programme.
+This project is intended for educational purposes as part of the Degree programme.
 
 ---
 
